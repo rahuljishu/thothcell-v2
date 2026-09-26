@@ -1,0 +1,6 @@
+{
+  "name": "THOTH CELL",
+  "description": "THOTH CELL builds social media into a continuous engine for visibility, engagement and business development. Think. Make. Move. Keep Going.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
