@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, ArrowUpRight, Check, Mail, Phone, Sparkles } from 'lucide-react';
+import { X, ArrowUpRight, Check, Mail, Phone, Sparkles, MessageCircle } from 'lucide-react';
 import { NeedCategory } from '../types';
 
 interface InquiryModalProps {
@@ -42,8 +42,8 @@ export function InquiryModal({ isOpen, onClose, initialNeed }: InquiryModalProps
   if (!isOpen) return null;
 
   const agencyEmail = 'Thothcell26@gmail.com';
-  const agencyPhone = '+91 79805 26391';
   const agencyPhoneClean = '+917980526391';
+  const whatsappUrl = `https://wa.me/917980526391?text=${encodeURIComponent('Hello THOTH CELL team, I would like to discuss a project.')}`;
 
   const needsList: NeedCategory[] = [
     'A brand to rethink',
@@ -113,9 +113,29 @@ export function InquiryModal({ isOpen, onClose, initialNeed }: InquiryModalProps
             <p className="text-sm text-[#a0a5b4] max-w-md mx-auto">
               Your message was prepared for <span className="text-white font-mono">{agencyEmail}</span>. If your email client didn't open automatically, you can also reach us directly:
             </p>
-            <div className="p-4 rounded-xl bg-white/5 font-mono text-xs text-white flex flex-col gap-2">
-              <div>Email: {agencyEmail}</div>
-              <div>Phone: {agencyPhone}</div>
+            <div className="p-4 rounded-xl bg-white/5 font-mono text-xs text-white flex flex-col gap-2.5">
+              <div>Email: <a href={`mailto:${agencyEmail}`} className="text-[#ff5500] hover:underline">{agencyEmail}</a></div>
+              <div className="flex items-center justify-between gap-3 pt-1 border-t border-white/10">
+                <span className="text-[#8e929d]">Direct Reach:</span>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 rounded bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-white transition-colors flex items-center gap-1 font-bold text-xs"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    <span>Chat</span>
+                  </a>
+                  <a
+                    href={`tel:${agencyPhoneClean}`}
+                    className="px-2.5 py-1 rounded bg-[#ff5500]/10 hover:bg-[#ff5500] text-[#ff5500] hover:text-white transition-colors flex items-center gap-1 font-bold text-xs"
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    <span>Call</span>
+                  </a>
+                </div>
+              </div>
             </div>
             <button
               type="button"

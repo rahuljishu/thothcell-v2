@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, Phone, Globe, ArrowUp } from 'lucide-react';
+import { ArrowUpRight, Mail, Phone, Globe, ArrowUp, MessageCircle } from 'lucide-react';
 import { Logo } from './Logo';
 
 export function Footer() {
@@ -7,8 +7,8 @@ export function Footer() {
   };
 
   const agencyEmail = 'Thothcell26@gmail.com';
-  const agencyPhone = '+91 79805 26391';
   const agencyPhoneClean = '+917980526391';
+  const whatsappUrl = `https://wa.me/917980526391?text=${encodeURIComponent('Hello THOTH CELL team, I would like to discuss a project.')}`;
 
   return (
     <footer id="main-footer" className="bg-[#08090a] text-[#ededed] pt-20 pb-12 relative overflow-hidden">
@@ -42,14 +42,35 @@ export function Footer() {
                 </a>
               </div>
 
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-[#717684] block mb-1">DIRECT LINE / WHATSAPP</span>
-                <a
-                  href={`tel:${agencyPhoneClean}`}
-                  className="text-white hover:text-[#ff5500] font-bold transition-colors"
-                >
-                  {agencyPhone}
-                </a>
+              <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between gap-2.5 min-w-[220px]">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[#717684] block text-[11px] uppercase tracking-wider">DIRECT LINE & WHATSAPP</span>
+                  <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1 font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    ACTIVE
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2 pt-0.5">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 group"
+                    title="Open WhatsApp chat"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                    <span>Chat</span>
+                  </a>
+                  <a
+                    href={`tel:${agencyPhoneClean}`}
+                    className="flex-1 px-3 py-1.5 rounded-lg bg-[#ff5500]/10 hover:bg-[#ff5500] text-[#ff5500] hover:text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 group"
+                    title="Call directly"
+                  >
+                    <Phone className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                    <span>Call</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

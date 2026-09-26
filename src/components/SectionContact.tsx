@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, ArrowUpRight, Copy, Check, Send, Sparkles, MessageSquare } from 'lucide-react';
+import { Mail, Phone, ArrowUpRight, Copy, Check, MessageCircle } from 'lucide-react';
 import { NeedCategory } from '../types';
 
 interface SectionContactProps {
@@ -16,12 +16,11 @@ export function SectionContact({ initialNeed }: SectionContactProps) {
   const [company, setCompany] = useState('');
   const [message, setMessage] = useState('');
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedPhone, setCopiedPhone] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
   const agencyEmail = 'Thothcell26@gmail.com';
-  const agencyPhone = '+91 79805 26391';
   const agencyPhoneClean = '+917980526391';
+  const whatsappUrl = `https://wa.me/917980526391?text=${encodeURIComponent('Hello THOTH CELL team, I would like to discuss a project.')}`;
 
   const needsList: NeedCategory[] = [
     'A brand to rethink',
@@ -35,12 +34,6 @@ export function SectionContact({ initialNeed }: SectionContactProps) {
     navigator.clipboard.writeText(agencyEmail);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2500);
-  };
-
-  const handleCopyPhone = () => {
-    navigator.clipboard.writeText(agencyPhone);
-    setCopiedPhone(true);
-    setTimeout(() => setCopiedPhone(false), 2500);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -163,42 +156,50 @@ export function SectionContact({ initialNeed }: SectionContactProps) {
                 </button>
               </div>
 
-              {/* Phone Card */}
-              <div className="p-4 rounded-xl bg-[#121417] border border-white/10 flex items-center justify-between">
+              {/* Phone & WhatsApp Card - Direct Action Buttons Only (No number visible, no show option) */}
+              <div className="p-4 rounded-xl bg-[#121417] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-white/5 text-[#ff5500]">
+                  <div className="p-2 rounded-lg bg-white/5 text-[#ff5500] shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-[10px] text-[#717684] uppercase block">
-                      PHONE & WHATSAPP
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-[10px] text-[#717684] uppercase block">
+                        PHONE & WHATSAPP
+                      </span>
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        DIRECT LINE
+                      </span>
+                    </div>
+                    <span className="font-mono text-xs text-white/80 font-medium">
+                      Support and Inquiry
                     </span>
-                    <a
-                      href={`tel:${agencyPhoneClean}`}
-                      id="contact-direct-phone-link"
-                      className="font-mono text-sm text-white hover:text-[#ff5500] transition-colors"
-                    >
-                      {agencyPhone}
-                    </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
-                  <button
-                    type="button"
-                    id="copy-phone-btn"
-                    onClick={handleCopyPhone}
-                    className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-[#8e929d] hover:text-white transition-colors"
-                    title="Copy phone number"
+                <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                  {/* WhatsApp Quick Link */}
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="whatsapp-direct-link"
+                    className="px-3 py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-white transition-all text-xs font-mono font-bold flex items-center gap-1.5 group"
+                    title="Chat on WhatsApp"
                   >
-                    {copiedPhone ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                  </button>
+                    <MessageCircle className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                    <span>Chat</span>
+                  </a>
+
+                  {/* Direct Call Link */}
                   <a
                     href={`tel:${agencyPhoneClean}`}
                     id="call-phone-link"
-                    className="p-2 rounded-lg bg-[#ff5500]/10 text-[#ff5500] hover:bg-[#ff5500] hover:text-white transition-colors text-xs font-mono font-bold"
+                    className="px-3 py-2 rounded-lg bg-[#ff5500]/10 hover:bg-[#ff5500] text-[#ff5500] hover:text-white transition-all text-xs font-mono font-bold flex items-center gap-1.5 group"
+                    title="Call directly"
                   >
-                    Call
+                    <Phone className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                    <span>Call</span>
                   </a>
                 </div>
               </div>
